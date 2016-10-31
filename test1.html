@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="http://static.runoob.com/assets/react/react-0.14.7/build/react.min.js"></script>
+    <script src="http://static.runoob.com/assets/react/react-0.14.7/build/react-dom.min.js"></script>
+    <script src="http://static.runoob.com/assets/react/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var Test = React.createClass({
+        getInitialState:function(){
+            return{
+                clicked:false,
+                checked:true,
+                color:'#ccc'
+            }
+        },
+        handchange:function(){
+            var colored = !this.state.checked?'#ccc':'#000'
+            var newState = !this.state.checked;
+
+            this.setState({
+                checked:newState,
+                color:colored
+            })
+        },
+        handclick:function(){
+            var newState = !this.state.clicked;
+            var colors =!this.state.clicked?'red':'blue';
+            this.setState({
+                clicked:newState,
+                color:colors
+            });
+        },
+        render:function(){
+            var checked = this.state.checked;
+            var clicked = this.state.clicked;
+            var ischecked = !this.state.checked?'false':'true';
+            var color = this.state.color;
+            var text ={
+                    color:this.state.color,
+                    fontSize:40,
+                    width:'800px',
+                    position: 'absolute',
+                    top: '150px',
+                    left:' 250px'
+
+        }
+            return(
+                    <div style={text}>
+                    <div  onClick={this.handclick}>Are you checked: {ischecked} {color}</div>
+                    <label >check:<input type="checkbox"  checked={checked} onChange={this.handchange}/></label>
+                    </div>
+            );
+        }
+    });
+    ReactDOM.render(
+    <Test/>,
+            document.getElementById('example')
+    );
+</script>
+</body>
+</html>
