@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="http://static.runoob.com/assets/react/react-0.14.7/build/react.min.js"></script>
+    <script src="http://static.runoob.com/assets/react/react-0.14.7/build/react-dom.min.js"></script>
+    <script src="http://static.runoob.com/assets/react/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+   var Mycontainer = React.createClass({
+       getInitialState:function(){
+           return{
+               totalChecked:0
+           };
+       },
+       onhandchecked:function(newState){
+           var newToye = !this.state.totalChecked?+(newState?1:-1);
+           setState({
+               checked:newToye
+           });
+   }
+   });
+   var Botton = React.createClass({
+       onhandcheck:function(){
+           var newState = !this.state.checked;
+           setState({
+               check:newState;
+           });
+           //
+           this.props.callbackParent(newState);
+       }
+   });
+    ReactDOM.render(
+    <MyContainer/>
+            ,
+            document.getElementById('example')
+    );
+</script>
+</body>
+</html>
