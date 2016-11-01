@@ -17,16 +17,21 @@
            };
        },
        onhandchecked:function(newState){
-           var newToye = this.state.totalChecked+(newState?1:-1);
-           setState({
-               checked:newToye
+           var newToye = this.state.totalChecked + (newState?1:-1);
+           this.setState({
+               totalChecked:newToye
            });
    },
        render:function(){
            var checked = this.state.checked;
-           var totalchecked = this.state.totalChecked;
+           var totalChecked = this.state.totalChecked;
            return(
-                   <div onChange={this.onhandcheck} checked={checked}>{totalchecked}<Botton/></div>
+                   <div  checked={checked} >{totalChecked}
+                   <Botton callbackParent={this.onhandchecked}/>
+                   <Botton callbackParent={this.onhandchecked}/>
+                   <Botton callbackParent={this.onhandchecked}/>
+                   <Botton callbackParent={this.onhandchecked}/>
+                   </div>
            );
        }
    });
@@ -42,14 +47,14 @@
            this.setState({
                check:newState
            });
-           //
-          // this.props.callbackParent(newState);
+           // 这里要注意：setState 是一个异步方法，所以需要操作缓存的当前值
+           this.props.callbackParent(newState);
        },
        render:function(){
            var check = !this.state.check?'false':'true';
            return(
                <div>
-               <input type="checkbox" check={check} onChange={this.onhandcheck}/>{check}
+               <input type="checkbox" check={check} onChange={this.onhandcheck} />{check}
            </div>
            );
        }
