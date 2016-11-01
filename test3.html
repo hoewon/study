@@ -17,24 +17,45 @@
            };
        },
        onhandchecked:function(newState){
-           var newToye = !this.state.totalChecked?+(newState?1:-1);
+           var newToye = this.state.totalChecked+(newState?1:-1);
            setState({
                checked:newToye
            });
-   }
+   },
+       render:function(){
+           var checked = this.state.checked;
+           var totalchecked = this.state.totalChecked;
+           return(
+                   <div onChange={this.onhandcheck} checked={checked}>{totalchecked}<Botton/></div>
+           );
+       }
    });
    var Botton = React.createClass({
+      getInitialState:function(){
+          return{
+            check:false
+
+          }
+      },
        onhandcheck:function(){
-           var newState = !this.state.checked;
-           setState({
-               check:newState;
+           var newState = !this.state.check;
+           this.setState({
+               check:newState
            });
            //
-           this.props.callbackParent(newState);
+          // this.props.callbackParent(newState);
+       },
+       render:function(){
+           var check = !this.state.check?'false':'true';
+           return(
+               <div>
+               <input type="checkbox" check={check} onChange={this.onhandcheck}/>{check}
+           </div>
+           );
        }
    });
     ReactDOM.render(
-    <MyContainer/>
+    <Mycontainer/>
             ,
             document.getElementById('example')
     );
