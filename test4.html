@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="http://static.runoob.com/assets/react/react-0.14.7/build/react.min.js"></script>
+    <script src="http://static.runoob.com/assets/react/react-0.14.7/build/react-dom.min.js"></script>
+    <script src="http://static.runoob.com/assets/react/browser.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+</head>
+<body>
+<div id="content"></div>
+<script type="text/babel">
+    var Counter = React.createClass({
+        getInitialState: function () {
+            return { clickCount: 0 };
+        },
+//        handleClick: function () {
+//            this.setState(function(state) {
+//                return {clickCount: state.clickCount + 1};
+//            });
+//        },
+//        render: function () {
+//            return (<h2 onClick={this.handleClick}>点我！点击次数为: {this.state.clickCount}</h2>);
+//        }
+        handClick:function(){
+            var newState = this.state.clickCount+1;
+            this.setState({
+                clickCount:newState
+            });
+        },
+        render:function(){
+            var clickCount  = this.state.clickCount;
+            return(
+                    <h2 onClick={this.handClick}>点击{clickCount}</h2>
+            );
+        }
+    });
+    ReactDOM.render(
+    <Counter />,
+            document.getElementById('content')
+    );
+    </script>
+</body>
+</html>
